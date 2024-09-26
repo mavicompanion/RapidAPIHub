@@ -1,7 +1,3 @@
-Here's a README template for a starter project to build a Flask app using RapidAPI:
-
----
-
 # Flask App with RapidAPI Integration
 
 This is a starter project for building a Flask application that integrates with an external API using RapidAPI. This project serves as a basic template for beginners looking to understand how to use APIs with Flask.
@@ -115,10 +111,3 @@ flask-rapidapi-starter/
 
 Contributions are welcome! Please fork this repository and submit a pull request for any improvements or bug fixes.
 
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
----
-
-Feel free to modify this template as needed for your specific project details.
