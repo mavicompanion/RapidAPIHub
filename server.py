@@ -15,6 +15,9 @@ def get_weather():
     city = request.args.get('city')
     weather_data = get_current_weather(city)
 
+    if not weather_data['cod'] == 200:
+        return render_template("error.html")
+
     return render_template(
         "weather.html",
         title=weather_data["name"],
@@ -22,6 +25,10 @@ def get_weather():
         temp=f"{weather_data['main']['temp']:.1f}",
         feels_like=f"{weather_data['main']['feels_like']:.1f}"
     )
+
+@app.route('/rickroll')
+def rickroll():
+    return render_template('www.youtube.com')
 
 if __name__ == "__main__":
     serve(app, host="0.0.0.0", port=8000)
