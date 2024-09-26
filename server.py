@@ -21,7 +21,6 @@ def get_weather():
         status = weather_data["weather"][0]["description"].capitalize(),
         temp=f"{weather_data['main']['temp']:.1f}",
         feels_like=f"{weather_data['main']['feels_like']:.1f}"
-
     )
 
 if __name__ == "__main__":
