@@ -18,8 +18,7 @@ def get_weather():
     return render_template(
         "weather.html",
         title=weather_data["name"],
-        status = weather_data["Weather"][0]["description"].capitalize(),
-        
+        status = weather_data["Weather"][0]["description"].capitalize(),  
     )
 
 if __name__ == "__main__":
