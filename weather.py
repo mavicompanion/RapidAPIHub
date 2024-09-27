@@ -8,7 +8,7 @@ load_dotenv()
 def get_current_weather(city="Kansas City"):
     url = f"https://open-weather13.p.rapidapi.com/city/{city}/EN"
     headers = {
-	"x-rapidapi-key": os.getenv("API_KEY"),
+	"x-rapidapi-key": os.getenv("API_KEY_WEATHER"),
 	"x-rapidapi-host": "open-weather13.p.rapidapi.com"
     }
 
