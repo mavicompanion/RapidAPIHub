@@ -26,9 +26,13 @@ def get_weather():
         feels_like=f"{weather_data['main']['feels_like']:.1f}"
     )
 
-@app.route('/rickroll')
-def rickroll():
-    return render_template('www.youtube.com')
+@app.route('/finance')
+def finance_graph():
+    pass
+
+# @app.route('/rickroll')
+# def rickroll():
+#     return render_template('www.youtube.com')
 
 if __name__ == "__main__":
     serve(app, host="0.0.0.0", port=8000)
