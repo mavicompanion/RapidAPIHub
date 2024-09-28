@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 from weather import get_current_weather
 from waitress import serve
+from finance import get_earnings
 
 
 app = Flask(__name__)
@@ -28,8 +29,16 @@ def get_weather():
 
 @app.route('/finance')
 def finance_graph():
+    x = get_earnings()
+    stockname = x["meta"]["symbol"]
+    earningsdaterevenue = x["body"]["earnings"]["earningsChart"]["earningsDate"][0]["raw"]
+    earningsdate = x["body"]["earnings"]["earningsChart"]["earningsDate"][0]["fmt"]
+
     return render_template(
-        "finance.html"
+        "finance.html",
+        stockName1 = stockname,
+        earningsdate1 = earningsdate,
+        earningsestimate1 = earningsdaterevenue
     )
 
 # @app.route('/rickroll')
