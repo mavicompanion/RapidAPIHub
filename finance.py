@@ -19,8 +19,7 @@ def get_earnings():
     return response
 
 
-
 x = get_earnings()
-with open("data.json", "w") as outfile:
-    json.dump(x, outfile)
+
+
 #pprint(x['body']['earnings']['maxAge'])
