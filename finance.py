@@ -3,6 +3,7 @@ from pprint import pprint
 import requests
 import os
 import json
+import matplotlib.pyplot as plt
 
 
 load_dotenv()
@@ -19,8 +20,12 @@ def get_earnings():
     return response
 
 
+if __name__ == "__main__":
+    x = get_earnings()
 
-x = get_earnings()
-with open("data.json", "w") as outfile:
-    json.dump(x, outfile)
-#pprint(x['body']['earnings']['maxAge'])
+    stockname = x["meta"]["symbol"]
+    earningsdaterevenue = x["body"]["earnings"]["earningsChart"]["earningsDate"][0]["raw"]
+    earningsdate = x["body"]["earnings"]["earningsChart"]["earningsDate"][0]["fmt"]
+
+    print(f"The estimated revenue for {stockname} by {earningsdate} is: {earningsdaterevenue}")
+
