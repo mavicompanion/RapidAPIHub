@@ -28,7 +28,9 @@ def get_weather():
 
 @app.route('/finance')
 def finance_graph():
-    pass
+    return render_template(
+        "finance.html"
+    )
 
 # @app.route('/rickroll')
 # def rickroll():

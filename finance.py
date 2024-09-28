@@ -2,6 +2,8 @@ from dotenv import load_dotenv
 from pprint import pprint
 import requests
 import os
+import json
+
 
 load_dotenv()
 
@@ -19,4 +21,6 @@ def get_earnings():
 
 
 x = get_earnings()
-pprint(x['body']['earnings']['maxAge'])
+with open("data.json", "w") as outfile:
+    json.dump(x, outfile)
+#pprint(x['body']['earnings']['maxAge'])
