@@ -42,31 +42,33 @@ data = '''
 }
 '''
 
-# Parse the JSON data
-parsed_data = json.loads(data)
+if __name__ == "__main__":
 
-# Access meta information
-version = parsed_data['meta']['version']
-symbol = parsed_data['meta']['symbol']
+    # Parse the JSON data
+    parsed_data = json.loads(data)
 
-# Access quarterly earnings information
-quarterly_earnings = parsed_data['body']['earnings']['earningsChart']['quarterly']
+    # Access meta information
+    version = parsed_data['meta']['version']
+    symbol = parsed_data['meta']['symbol']
 
-for q in quarterly_earnings:
-    date = q['date']
-    actual_earnings = q['actual']['raw']
-    estimated_earnings = q['estimate']['raw']
-    print(f"Date: {date}, Actual: {actual_earnings}, Estimate: {estimated_earnings}")
+    # Access quarterly earnings information
+    quarterly_earnings = parsed_data['body']['earnings']['earningsChart']['quarterly']
 
-# Access current quarter estimate
-current_estimate = parsed_data['body']['earnings']['earningsChart']['currentQuarterEstimate']['raw']
-print(f"Current Quarter Estimate: {current_estimate}")
+    for q in quarterly_earnings:
+        date = q['date']
+        actual_earnings = q['actual']['raw']
+        estimated_earnings = q['estimate']['raw']
+        print(f"Date: {date}, Actual: {actual_earnings}, Estimate: {estimated_earnings}")
 
-# Access yearly financials
-yearly_financials = parsed_data['body']['earnings']['financialsChart']['yearly']
+    # Access current quarter estimate
+    current_estimate = parsed_data['body']['earnings']['earningsChart']['currentQuarterEstimate']['raw']
+    print(f"Current Quarter Estimate: {current_estimate}")
 
-for year in yearly_financials:
-    date = year['date']
-    revenue = year['revenue']['raw']
-    earnings = year['earnings']['raw']
-    print(f"Year: {date}, Revenue: {revenue}, Earnings: {earnings}")
+    # Access yearly financials
+    yearly_financials = parsed_data['body']['earnings']['financialsChart']['yearly']
+
+    for year in yearly_financials:
+        date = year['date']
+        revenue = year['revenue']['raw']
+        earnings = year['earnings']['raw']
+        print(f"Year: {date}, Revenue: {revenue}, Earnings: {earnings}")

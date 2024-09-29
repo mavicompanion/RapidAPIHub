@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Index</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styling for hover effects */
+        .button-hover:hover {
+            transform: translateY(-4px);
+        }
+    </style>
+</head>
+
+<body class="min-h-screen bg-gray-100 flex items-center justify-center">
+    <div class="w-full max-w-lg bg-white p-10 rounded-lg shadow-md text-center">
+        <h1 class="text-3xl font-bold mb-8 text-gray-800">Welcome to the Dashboard</h1>
+        <p class="text-gray-600 mb-12">Choose an area to explore:</p>
+        <!-- Buttons -->
+        <div class="space-y-6">
+            <!-- Weather Button -->
+            <a href="/acceptweather"
+                class="block w-full text-xl font-semibold py-3 bg-blue-500 text-white rounded-lg shadow button-hover transition-transform">
+                Weather Section
+            </a>
+            <!-- Finance Button -->
+            <a href="/acceptf"
+                class="block w-full text-xl font-semibold py-3 bg-green-500 text-white rounded-lg shadow button-hover transition-transform">
+                Finance Section
+            </a>
+        </div>
+    </div>
+</body>
+
+</html>

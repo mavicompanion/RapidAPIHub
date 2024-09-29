@@ -3,14 +3,15 @@ from pprint import pprint
 import requests
 import os
 import json
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 
 
 load_dotenv()
 
-def get_earnings():
+def get_earnings(stname):
     url = "https://yahoo-finance15.p.rapidapi.com/api/v1/markets/stock/modules"
-    querystring = {"ticker":"AAPL","module":"earnings"}
+    querystring = {"ticker":"MSFT","module":"earnings"}
+    querystring["ticker"] = stname
     headers = {
 	"x-rapidapi-key": os.getenv("API_KEY_FINANCE"),
 	"x-rapidapi-host": "yahoo-finance15.p.rapidapi.com"
@@ -21,7 +22,8 @@ def get_earnings():
 
 
 if __name__ == "__main__":
-    x = get_earnings()
+    l = str(input("Enter name of Stock: "))
+    x = get_earnings(l)
 
     stockname = x["meta"]["symbol"]
     earningsdaterevenue = x["body"]["earnings"]["earningsChart"]["earningsDate"][0]["raw"]
