@@ -2,9 +2,6 @@ from dotenv import load_dotenv
 from pprint import pprint
 import requests
 import os
-import json
-# import matplotlib.pyplot as plt
-
 
 load_dotenv()
 

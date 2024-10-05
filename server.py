@@ -74,6 +74,12 @@ def error_page():
     #Separate error page
     return render_template("error.html")
 
+
+@app.route('/ytdown')
+def yt_video_downloader():
+    pass
+
+
 if __name__ == "__main__":
     serve(app, host="0.0.0.0", port=8000)
 
