@@ -69,6 +69,10 @@ def finance_graph():
 def accept_stock():
     return render_template("acceptstock.html")
 
+@app.route('/error')
+def error_page():
+    #Separate error page
+    return render_template("error.html")
 
 if __name__ == "__main__":
     serve(app, host="0.0.0.0", port=8000)
