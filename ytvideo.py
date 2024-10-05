@@ -25,7 +25,7 @@ def get_video(video_url):
     querystring["id"] = video_id
 
     headers = {
-        "x-rapidapi-key": "3442d23a1cmsh1210fe872a8c3dep106b17jsn5b06b9186471",
+        "x-rapidapi-key": os.getenv("API_KEY_YT"),
         "x-rapidapi-host": "yt-api.p.rapidapi.com"
     }
 

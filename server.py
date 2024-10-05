@@ -74,7 +74,6 @@ def error_page():
     #Separate error page
     return render_template("error.html")
 
-
 @app.route('/ytdown')
 def yt_video_downloader():
     pass
