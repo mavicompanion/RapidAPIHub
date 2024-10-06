@@ -2,6 +2,8 @@ from flask import Flask, render_template, request
 from weather import get_current_weather
 from waitress import serve
 from finance import get_earnings
+from ytvideo import get_video
+import webbrowser
 
 
 app = Flask(__name__)
@@ -76,8 +78,15 @@ def error_page():
 
 @app.route('/ytdown')
 def yt_video_downloader():
-    pass
+    video_url = request.args.get('youtube-link')
+    responses = get_video(video_url)
+    x = responses["formats"][0]["url"]
+    webbrowser.open(x)
+    return render_template("youTube.html")
 
+@app.route('/ytaccept')
+def get_yt_page():
+    return render_template("youTube.html")
 
 if __name__ == "__main__":
     serve(app, host="0.0.0.0", port=8000)
