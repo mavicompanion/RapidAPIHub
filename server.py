@@ -3,9 +3,6 @@ from weather import get_current_weather
 from waitress import serve
 from finance import get_earnings
 from ytvideo import get_video
-import webbrowser
-from moviepy.editor import VideoFileClip, AudioFileClip, CompositeVideoClip
-
 
 app = Flask(__name__)
 
@@ -81,9 +78,13 @@ def error_page():
 def yt_video_downloader():
     video_url = request.args.get('youtube-link')
     responses = get_video(video_url)
-    x = responses["formats"][0]["url"]
-    webbrowser.open(x)
-    return render_template("youTube.html")
+    video_path = responses["adaptiveFormats"][0]["url"]
+    audio_path = responses["adaptiveFormats"][-1]["url"]
+    return render_template(
+        "ytplay.html",
+        videoLink = video_path,
+        audioLink = audio_path
+    )
 
 @app.route('/ytaccept')
 def get_yt_page():

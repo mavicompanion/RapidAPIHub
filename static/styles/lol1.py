@@ -11,18 +11,19 @@ headers = {
 }
 
 response = requests.get(url, headers=headers, params=querystring).json()
-print(response["adaptiveFormats"][-1]["url"])
 
-def merge_video_and_audio(video_path, audio_path, output_path):
-  video_clip = VideoFileClip(video_path)
-  audio_clip = AudioFileClip(audio_path)
-  final_clip = CompositeVideoClip([video_clip, audio_clip])
-  final_clip.write_videofile(output_path)
+# print(response["adaptiveFormats"][-1]["url"])
 
-# Example usage:
-video_path = response["adaptiveFormats"][0]["url"]
-audio_path = response["adaptiveFormats"][-1]["url"]
-output_path = "merged_video.mp4"
+# def merge_video_and_audio(video_path, audio_path, output_path):
+#   video_clip = VideoFileClip(video_path)
+#   audio_clip = AudioFileClip(audio_path)
+#   final_clip = CompositeVideoClip([video_clip, audio_clip])
+#   final_clip.write_videofile(output_path)
 
-merge_video_and_audio(video_path, audio_path, output_path)
+# # Example usage:
+# video_path = response["adaptiveFormats"][0]["url"]
+# audio_path = response["adaptiveFormats"][-1]["url"]
+# output_path = "merged_video.mp4"
+
+# merge_video_and_audio(video_path, audio_path, output_path)
 

@@ -36,6 +36,8 @@ def get_video(video_url):
 if __name__ == "__main__":
     video_url = str(input("Enter video URL: "))
     m = get_video(video_url)
-    x = m["adaptiveFormats"]
+    x = m["adaptiveFormats"][0]
+    y = m["adaptiveFormats"][-1]
     pprint(x)
+    pprint(y)
     # webbrowser.open(x)
