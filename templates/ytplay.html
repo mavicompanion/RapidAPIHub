@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Play Audio and Video Simultaneously</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: #f4f4f4;
+    }
+    video {
+      width: 600px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <video id="videoPlayer" controls>
+    <source src={{videoLink}} type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <audio id="audioPlayer" controls>
+    <source src={{audioLink}} type="audio/mp4">
+    Your browser does not support the audio tag.
+  </audio>
+
+  <button id="playButton">Play Simultaneously</button>
+
+  <script>
+    const video = document.getElementById('videoPlayer');
+    const audio = document.getElementById('audioPlayer');
+    const playButton = document.getElementById('playButton');
+
+    playButton.addEventListener('click', () => {
+      // Play both video and audio at the same time
+      video.play();
+      audio.play();
+    });
+
+    // Keep both media elements in sync
+    video.addEventListener('play', () => {
+      if (audio.paused) audio.play();
+    });
+
+    video.addEventListener('pause', () => {
+      audio.pause();
+    });
+
+    video.addEventListener('seeked', () => {
+      audio.currentTime = video.currentTime;
+    });
+
+    video.addEventListener('timeupdate', () => {
+      // Ensure small sync between audio and video
+      if (Math.abs(video.currentTime - audio.currentTime) > 0.3) {
+        audio.currentTime = video.currentTime;
+      }
+    });
+  </script>
+
+</body>
+</html>
