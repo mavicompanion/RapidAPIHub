@@ -2,7 +2,6 @@ from dotenv import load_dotenv
 from pprint import pprint
 import requests
 import os
-import webbrowser
 import re
 
 load_dotenv()
@@ -19,7 +18,7 @@ def get_video_id_regex(video_url):
 
 def get_video(video_url):
     url = "https://yt-api.p.rapidapi.com/dl"
-    querystring = {"id":"arj7oStGLkU"}
+    querystring = {"id":"6r2Kbaai22s"}
 
     video_id = get_video_id_regex(video_url)
     querystring["id"] = video_id

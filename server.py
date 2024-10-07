@@ -1,9 +1,10 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_file
 from weather import get_current_weather
 from waitress import serve
 from finance import get_earnings
 from ytvideo import get_video
 import webbrowser
+from moviepy.editor import VideoFileClip, AudioFileClip, CompositeVideoClip
 
 
 app = Flask(__name__)
