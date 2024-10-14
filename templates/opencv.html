@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask OpenCV Integration</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold text-center mb-8">Upload Image and Process with OpenCV</h1>
+
+        <form method="POST" enctype="multipart/form-data" action="{{ url_for('upload_image') }}" class="text-center">
+            <input type="file" name="file" class="border p-2 mb-4" accept="image/*" required>
+            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Upload & Process</button>
+        </form>
+
+        {% if uploaded_image and processed_image %}
+        <div class="flex justify-around mt-8">
+            <div>
+                <h2 class="text-xl font-semibold">Original Image:</h2>
+                <img src="{{ url_for('static', filename='uploads/' + uploaded_image) }}" class="border p-2 mt-2">
+            </div>
+
+            <div>
+                <h2 class="text-xl font-semibold">Processed Image (Grayscale):</h2>
+                <img src="{{ url_for('static', filename='uploads/' + processed_image) }}" class="border p-2 mt-2">
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
