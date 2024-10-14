@@ -1,10 +1,20 @@
-from flask import Flask, render_template, request, send_file
+from flask import Flask, render_template, request, send_file, redirect, url_for
 from weather import get_current_weather
 from waitress import serve
 from finance import get_earnings
 from ytvideo import get_video
+from werkzeug.utils import secure_filename
+import cv2
+import os
 
 app = Flask(__name__)
+
+UPLOAD_FOLDER = 'static/uploads/'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @app.route('/')
 @app.route('/index')
@@ -89,6 +99,41 @@ def yt_video_downloader():
 @app.route('/ytaccept')
 def get_yt_page():
     return render_template("youTube.html")
+
+@app.route('/upload', methods=['POST'])
+def upload_image():
+    if 'file' not in request.files:
+        return redirect(request.url)
+
+    file = request.files['file']
+
+    if file.filename == '':
+        return redirect(request.url)
+
+    if file and allowed_file(file.filename):
+        filename = secure_filename(file.filename)
+        filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        file.save(filepath)
+
+        img = cv2.imread(filepath)
+
+        if img is None:
+            return 'Error: Could not open the uploaded image.'
+
+        processed_image = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+        processed_filename = 'processed_' + filename
+        processed_filepath = os.path.join(app.config['UPLOAD_FOLDER'], processed_filename)
+        cv2.imwrite(processed_filepath, processed_image)
+
+        return render_template('opencv.html', uploaded_image=filename, processed_image=processed_filename)
+
+    return redirect(request.url)
+
+@app.route('/trialupload')
+def opencvpage():
+    return render_template('opencv.html')
+
 
 if __name__ == "__main__":
     serve(app, host="0.0.0.0", port=8000)
